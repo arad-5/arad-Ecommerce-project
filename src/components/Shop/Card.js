@@ -7,8 +7,9 @@ import { Cart_context } from "../../Context/CartContextProvider";
 //helper functions
 import { product_find_index } from "../../helper/functions";
 
-//icons
-import { BiTrash } from "react-icons/bi";
+//shared components
+import CartProductControlButton from "../shared/CartProductControlButton";
+
 
 const Card = ({ productData }) => {
     const { image, title, price } = productData;
@@ -21,9 +22,7 @@ const Card = ({ productData }) => {
     };
 
     //👇🏻 This is the product in cart (the reason of using (logical &&) is because we don't have the data at first mount, so we say if it is exists then define the value)
-    const selected_products = state.selected_items[product_find_index(state, productData.id)] && state.selected_items[product_find_index(state, productData.id)]
-    //👇🏻 This is the product quantity in cart (the reason of using (logical &&) is because we don't have the data at first mount,, so we say if it is exists then define the value)
-    const product_count = state.selected_items[product_find_index(state, productData.id)] && state.selected_items[product_find_index(state, productData.id)].quantity;
+    const selected_products = state.selected_items[product_find_index(state, productData.id)] && state.selected_items[product_find_index(state, productData.id)];
     return (
         <Container>
             <Image src={image} alt={title} />
@@ -31,20 +30,7 @@ const Card = ({ productData }) => {
                 <h3>{title}</h3>
                 <span>${price}</span>
             </Info>
-            <Cart_buttons>
-                {!selected_products ? (
-                    <button onClick={() => dispatchCallBack("ADD_PRODUCT")}>Add to basket</button>
-                ) : (
-                    <div>
-                        <button onClick={() => dispatchCallBack("DECREASE_PRODUCT_QUANTITY")}>-</button>
-                        {product_count && <span>{product_count}</span>}
-                        <button onClick={() => dispatchCallBack("INCREASE_PRODUCT_QUANTITY")}>+</button>
-                        <button onClick={() => dispatchCallBack("REMOVE_PRODUCT")}>
-                            <BiTrash />
-                        </button>
-                    </div>
-                )}
-            </Cart_buttons>
+            <Cart_buttons>{!selected_products ? <button onClick={() => dispatchCallBack("ADD_PRODUCT")}>Add to basket</button> : <CartProductControlButton productData={productData}/>}</Cart_buttons>
         </Container>
     );
 };
@@ -107,6 +93,7 @@ const Cart_buttons = styled.div`
             box-shadow: 0px 0px 0px #235fff;
         }
     }
+    //asdf
     > div {
         display: flex;
         align-items: center;

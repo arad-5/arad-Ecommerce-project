@@ -8,11 +8,21 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* this is for navbar  */
+  /* 👇🏻 for navbar  */
   margin-top: 7rem;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+main {
+  margin: 0 auto;
+  max-width: 1350px;
+  display: flex;
+  flex-wrap: wrap;
+  @media (max-width: 1350px) {
+    justify-content: center;
+  }
 }

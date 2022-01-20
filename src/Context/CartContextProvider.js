@@ -6,6 +6,7 @@ const initialState = {
     checkout: false,
 };
 const reducer = (state, action) => {
+    //👇🏻 This is the porduct that called dispatch in store (so every time that we click the button in card this is the data of that card in selected items)
     const current_product = state.selected_items[state.selected_items.findIndex((item) => item.id === action.productData.id)];
     switch (action.type) {
         case "ADD_PRODUCT":
@@ -33,16 +34,20 @@ const reducer = (state, action) => {
                 ...state,
                 selected_items: state.selected_items.filter(item => item.id !== action.productData.id)
             }
+        //👇🏻 This will be called in every button click in store cards (the main function of it is that it will sum every product qunatity for two reasons:
+        // 1: we want to display the total products quantity live in navbar (inside the basket button)
+        // 2: we want to also access the the quantity of all products )
         case "TOTAL_COUNTER":
             state.products_count = 0;
             state.selected_items.forEach(item => {
                 state.products_count += item.quantity;
-                console.log(state.products_count);
             })
         default:
             return state;
     }
 };
+
+//context provider 
 export const Cart_context = createContext();
 export function CartContextProvider({ children }) {
     const [state, dispatch] = useReducer(reducer, initialState);
