@@ -1,10 +1,9 @@
 import React, { useContext, useState } from "react";
-import { products_context } from "./Context/ProductsContextProvider";
+import Store from "./components/Shop/Store";
 function App() {
-    const products = useContext(products_context);
-    return <main className="App">
-      
-    </main>;
+    return <>
+      <Store />
+    </>;
 }
 
 export default App;
