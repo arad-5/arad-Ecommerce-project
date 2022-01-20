@@ -1,10 +1,11 @@
 import React, { useContext, useState, useRef, useEffect } from "react";
 import styled from "styled-components";
+
 //import cart context
 import { Cart_context } from "../../Context/CartContextProvider";
 
 //helper functions
-import { product_find_index, product_is_in_cart } from "../../helper/functions";
+import { product_find_index } from "../../helper/functions";
 
 //icons
 import { BiTrash } from "react-icons/bi";
@@ -19,7 +20,7 @@ const Card = ({ productData }) => {
         dispatch({ type: action_type, productData: productData });
         setTimeout(() => {
             setProducts_counter(state.selected_items[product_find_index(state, productData.id)].quantity);
-        }, 10);
+        }, 1);
     };
     return (
         <Container>
@@ -52,10 +53,10 @@ export default Card;
 const Container = styled.div`
     width: calc(25% - 2rem);
     min-width: 18rem;
-    height: 25rem;
+    height: 30rem;
     margin: 1rem;
     padding: 1rem;
-    box-shadow: 0px 5px 10px silver;
+    box-shadow: 0px 5px 10px #c0c0c0b0;
     border-radius: 2rem;
     position: relative;
 `;
@@ -76,15 +77,18 @@ const Info = styled.div`
         font-weight: bold;
         font-size: 1.3rem;
         position: absolute;
-        bottom: 2rem;
-        right: 2rem;
+        bottom: 5rem;
+        left: 1rem;
     }
 `;
 const Cart_buttons = styled.div`
     position: absolute;
-    left: 2rem;
+    left: 50%;
     bottom: 2rem;
+    width: 14rem;
+    transform: translateX(-50%);
     > button {
+        width: 14rem;
         color: #fff;
         border: 0;
         padding: 0.5rem 1rem;
