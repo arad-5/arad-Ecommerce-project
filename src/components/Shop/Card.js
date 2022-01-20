@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef, useEffect } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 
 //import cart context
@@ -14,14 +14,16 @@ const Card = ({ productData }) => {
     const { image, title, price } = productData;
     const cart_data = useContext(Cart_context);
     const { state, dispatch } = cart_data;
-    const [products_counter, setProducts_counter] = useState(0);
-    //dispatch
+    //👇🏻 This is the context dispatch function which is going to be called by buttons with different action types
     const dispatchCallBack = (action_type) => {
         dispatch({ type: action_type, productData: productData });
-        setTimeout(() => {
-            setProducts_counter(state.selected_items[product_find_index(state, productData.id)].quantity);
-        }, 1);
+        dispatch({ type: "TOTAL_COUNTER", productData: productData });
     };
+
+    //👇🏻 This is the product in cart (the reason of using (logical &&) is because we don't have the data at first mount, so we say if it is exists then define the value)
+    const selected_products = state.selected_items[product_find_index(state, productData.id)] && state.selected_items[product_find_index(state, productData.id)]
+    //👇🏻 This is the product quantity in cart (the reason of using (logical &&) is because we don't have the data at first mount,, so we say if it is exists then define the value)
+    const product_count = state.selected_items[product_find_index(state, productData.id)] && state.selected_items[product_find_index(state, productData.id)].quantity;
     return (
         <Container>
             <Image src={image} alt={title} />
@@ -30,12 +32,12 @@ const Card = ({ productData }) => {
                 <span>${price}</span>
             </Info>
             <Cart_buttons>
-                {!state.selected_items[product_find_index(state, productData.id)] ? (
+                {!selected_products ? (
                     <button onClick={() => dispatchCallBack("ADD_PRODUCT")}>Add to basket</button>
                 ) : (
                     <div>
                         <button onClick={() => dispatchCallBack("DECREASE_PRODUCT_QUANTITY")}>-</button>
-                        <span>{products_counter}</span>
+                        {product_count && <span>{product_count}</span>}
                         <button onClick={() => dispatchCallBack("INCREASE_PRODUCT_QUANTITY")}>+</button>
                         <button onClick={() => dispatchCallBack("REMOVE_PRODUCT")}>
                             <BiTrash />

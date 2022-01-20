@@ -33,6 +33,12 @@ const reducer = (state, action) => {
                 ...state,
                 selected_items: state.selected_items.filter(item => item.id !== action.productData.id)
             }
+        case "TOTAL_COUNTER":
+            state.products_count = 0;
+            state.selected_items.forEach(item => {
+                state.products_count += item.quantity;
+                console.log(state.products_count);
+            })
         default:
             return state;
     }
