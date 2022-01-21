@@ -17,7 +17,16 @@ export default function CartProductControlButton({ productData }) {
 
     const dispatchCallBack = (action_type) => {
         dispatch({ type: action_type, productData: productData });
+
         dispatch({ type: "TOTAL_COUNTER", productData: productData });
+        // 👇🏻 "SUM_PRICE" dispatch needs product data to sum (so if we dont have any product  ,,,, this will throw error, So we write statmeent that it will run sum total dispatch when the action type is not "REMOVE_PRODUCT")
+        if (action_type !== "REMOVE_PRODUCT") {
+            // 👇🏻 for sum prices ,, first when we add item we will have sum price as its own product price so we dont need to sum (so we use statement)
+            if (action_type !== "ADD_PRODUCT") {
+                dispatch({ type: "SUM_PRICE", productData: productData });
+            }
+        }
+        dispatch({ type: "SUM_TOTAL_PRICE", productData: productData });
     };
 
     return (

@@ -10,7 +10,6 @@ import { product_find_index } from "../../helper/functions";
 //shared components
 import CartProductControlButton from "../shared/CartProductControlButton";
 
-
 const Card = ({ productData }) => {
     const { image, title, price } = productData;
     const cart_data = useContext(Cart_context);
@@ -19,6 +18,7 @@ const Card = ({ productData }) => {
     const dispatchCallBack = (action_type) => {
         dispatch({ type: action_type, productData: productData });
         dispatch({ type: "TOTAL_COUNTER", productData: productData });
+        dispatch({ type: "SUM_TOTAL_PRICE", productData: productData });
     };
 
     //👇🏻 This is the product in cart (the reason of using (logical &&) is because we don't have the data at first mount, so we say if it is exists then define the value)
@@ -30,14 +30,14 @@ const Card = ({ productData }) => {
                 <h3>{title}</h3>
                 <span>${price}</span>
             </Info>
-            <Cart_buttons>{!selected_products ? <button onClick={() => dispatchCallBack("ADD_PRODUCT")}>Add to basket</button> : <CartProductControlButton productData={productData}/>}</Cart_buttons>
+            <Cart_buttons>{!selected_products ? <button onClick={() => dispatchCallBack("ADD_PRODUCT")}>Add to basket</button> : <CartProductControlButton productData={productData} />}</Cart_buttons>
         </Container>
     );
 };
 
 export default Card;
 
-//styling
+//💅🏻styling
 const Container = styled.div`
     width: calc(25% - 2rem);
     min-width: 18rem;
@@ -47,11 +47,15 @@ const Container = styled.div`
     box-shadow: 0px 5px 10px #c0c0c0b0;
     border-radius: 2rem;
     position: relative;
+    @media (max-width: 639px) {
+        width: 90%;
+    }
 `;
 const Image = styled.img`
     height: 10rem;
     width: 100%;
     object-fit: contain;
+    image-rendering: pixelated;
 `;
 const Info = styled.div`
     height: 10rem;

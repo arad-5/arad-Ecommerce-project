@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import styled from "styled-components";
 
 //products context
 import { products_context } from "../../Context/ProductsContextProvider";
@@ -9,10 +10,18 @@ import Card from "./Card";
 export default function Store() {
     const products = useContext(products_context);
     return (
-        <main>
+        <Main>
             {products.map((product) => (
-                <Card key={product.id} productData={product}/>
+                <Card key={product.id} productData={product} />
             ))}
-        </main>
+        </Main>
     );
 }
+
+//💅🏻styling
+const Main = styled.main`
+    @media (max-width: 1280px) {
+        display: flex;
+        justify-content: center;
+    }
+`;
