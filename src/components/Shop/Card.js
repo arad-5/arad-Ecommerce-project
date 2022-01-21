@@ -55,7 +55,6 @@ const Image = styled.img`
     height: 10rem;
     width: 100%;
     object-fit: contain;
-    image-rendering: pixelated;
 `;
 const Info = styled.div`
     height: 10rem;
