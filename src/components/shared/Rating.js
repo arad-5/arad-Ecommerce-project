@@ -54,6 +54,7 @@ const Info = styled.div`
     > span {
         display: flex;
         align-items: center;
+        color: #858585;
     }
     > span > svg {
         margin-right: 0.5rem;

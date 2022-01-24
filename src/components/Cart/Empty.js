@@ -34,7 +34,6 @@ const Container = styled.main`
         font-weight: 500;
         text-decoration: none;
         color: #404040;
-        margin-bottom: 5rem;
         font-size: 2rem;
         > svg {
             font-size: 8rem;

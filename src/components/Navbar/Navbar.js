@@ -4,9 +4,6 @@ import { Link } from "react-router-dom";
 //icon
 import { FaShoppingBasket } from "react-icons/fa";
 
-//helper functions
-import { product_find_index } from "../../helper/functions";
-
 //context
 import { Cart_context } from "../../Context/CartContextProvider";
 
@@ -30,7 +27,7 @@ const Container = styled.nav`
     position: fixed;
     left: 0;
     top: 0;
-    height: 5rem;
+    height: 4rem;
     width: 100%;
     z-index: 10;
     background-color: #fff;
