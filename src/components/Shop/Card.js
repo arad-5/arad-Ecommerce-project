@@ -3,15 +3,16 @@ import styled from "styled-components";
 
 //import cart context
 import { Cart_context } from "../../Context/CartContextProvider";
-
+import { Link } from "react-router-dom";
 //helper functions
 import { product_find_index } from "../../helper/functions";
 
 //shared components
 import CartProductControlButton from "../shared/CartProductControlButton";
+import CartProductControllButton_AddToBasket from "../shared/CartProductControllButton_AddToBasket";
 
 const Card = ({ productData }) => {
-    const { image, title, price } = productData;
+    const { image, title, price, id } = productData;
     const cart_data = useContext(Cart_context);
     const { state, dispatch } = cart_data;
     //👇🏻 This is the context dispatch function which is going to be called by buttons with different action types
@@ -25,12 +26,18 @@ const Card = ({ productData }) => {
     const selected_products = state.selected_items[product_find_index(state, productData.id)] && state.selected_items[product_find_index(state, productData.id)];
     return (
         <Container>
-            <Image src={image} alt={title} />
-            <Info>
-                <h3>{title}</h3>
-                <span>${price}</span>
-            </Info>
-            <Cart_buttons>{!selected_products ? <button onClick={() => dispatchCallBack("ADD_PRODUCT")}>Add to basket</button> : <CartProductControlButton productData={productData} />}</Cart_buttons>
+            <Link to={"/store/" + id}>
+                <Image src={image} alt={title} />
+            </Link>
+            <Link to={"/store/" + id}>
+                <Info>
+                    <h3>{title}</h3>
+                    <span>${price}</span>
+                </Info>
+            </Link>
+            <Cart_buttons>
+                <CartProductControllButton_AddToBasket productData={productData}/>
+            </Cart_buttons>
         </Container>
     );
 };
@@ -49,6 +56,9 @@ const Container = styled.div`
     position: relative;
     @media (max-width: 639px) {
         width: 90%;
+    }
+    > a {
+        text-decoration: none;
     }
 `;
 const Image = styled.img`
@@ -71,6 +81,13 @@ const Info = styled.div`
         bottom: 5rem;
         left: 1rem;
     }
+
+    &:hover {
+        text-decoration: underline;
+    }
+    &:active {
+        color: #ff0059;
+    }
 `;
 const Cart_buttons = styled.div`
     position: absolute;
@@ -78,67 +95,4 @@ const Cart_buttons = styled.div`
     bottom: 2rem;
     width: 14rem;
     transform: translateX(-50%);
-    > button {
-        width: 14rem;
-        color: #fff;
-        border: 0;
-        padding: 0.5rem 1rem;
-        cursor: pointer;
-        background-color: #235fff;
-        border-radius: 0.5rem;
-        font-size: 1rem;
-        box-shadow: 0px 0px 10px #235fff;
-        &:hover {
-            box-shadow: 0px 0px 25px #235fff;
-        }
-        transition: 50ms;
-        &:active {
-            box-shadow: 0px 0px 0px #235fff;
-        }
-    }
-    //asdf
-    > div {
-        display: flex;
-        align-items: center;
-    }
-    > div > button {
-        color: #fff;
-        border: 0;
-        width: 2rem;
-        height: 2rem;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0.5rem 1rem;
-        cursor: pointer;
-        background-color: #235fff;
-        border-radius: 0.5rem;
-        font-size: 1.5rem;
-        box-shadow: 0px 0px 10px #235fff;
-        &:hover {
-            box-shadow: 0px 0px 25px #235fff;
-        }
-        transition: 50ms;
-        &:active {
-            box-shadow: 0px 0px 0px #235fff;
-        }
-        &:last-child {
-            background-color: #ff0059;
-            width: 3rem;
-            margin-left: 1rem;
-            box-shadow: 0px 0px 10px #ff0059;
-            &:hover {
-                box-shadow: 0px 0px 25px #ff0059;
-            }
-            &:active {
-                box-shadow: 0px 0px 0px #ff0059;
-            }
-        }
-    }
-    > div > span {
-        margin: 0 0.5rem;
-        font-size: 1.6rem;
-        font-weight: bold;
-        color: #ff0059;
-    }
 `;
