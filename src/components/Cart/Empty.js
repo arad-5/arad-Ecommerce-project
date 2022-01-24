@@ -9,7 +9,6 @@ export default function Empty() {
     return (
         <Container>
             <div>
-                <FiBox />
                 <article>Your cart is empty</article>
             </div>
             <div>
@@ -36,19 +35,15 @@ const Container = styled.main`
         text-decoration: none;
         color: #404040;
         margin-bottom: 5rem;
+        font-size: 2rem;
         > svg {
             font-size: 8rem;
-            background-color: #fff;
-            background: radial-gradient(#ff005990, transparent 80%);
             border-radius: 50%;
             overflow: visible;
             padding: 2rem;
             transition: 200ms;
-        }
-        &:hover {
-            > svg {
+            &:hover {
                 padding: 1rem;
-                background: none;
             }
         }
         > button {

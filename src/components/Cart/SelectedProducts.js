@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 //shared components
 import CartProductControlButton from "../shared/CartProductControlButton";
-import Rating from "../shared/Rating"
+import Rating from "../shared/Rating";
 export default function SelectedProducts({ productData }) {
-    const { image, title, price ,rating} = productData;
+    const { image, title, price, rating } = productData;
     return (
         <Product>
             <Image>
@@ -89,7 +89,7 @@ const Info = styled.div`
     @media (max-width: 540px) {
         padding-bottom: 12rem;
     }
-    >div:last-child {
+    > div:last-child {
         position: absolute;
         left: 0%;
         bottom: 5rem;
