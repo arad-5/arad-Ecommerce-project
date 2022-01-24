@@ -1,29 +1,14 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-
-//import cart context
-import { Cart_context } from "../../Context/CartContextProvider";
 import { Link } from "react-router-dom";
-//helper functions
-import { product_find_index } from "../../helper/functions";
 
 //shared components
-import CartProductControlButton from "../shared/CartProductControlButton";
 import CartProductControllButton_AddToBasket from "../shared/CartProductControllButton_AddToBasket";
+import Rating from "../shared/Rating";
 
 const Card = ({ productData }) => {
-    const { image, title, price, id } = productData;
-    const cart_data = useContext(Cart_context);
-    const { state, dispatch } = cart_data;
-    //👇🏻 This is the context dispatch function which is going to be called by buttons with different action types
-    const dispatchCallBack = (action_type) => {
-        dispatch({ type: action_type, productData: productData });
-        dispatch({ type: "TOTAL_COUNTER", productData: productData });
-        dispatch({ type: "SUM_TOTAL_PRICE", productData: productData });
-    };
-
-    //👇🏻 This is the product in cart (the reason of using (logical &&) is because we don't have the data at first mount, so we say if it is exists then define the value)
-    const selected_products = state.selected_items[product_find_index(state, productData.id)] && state.selected_items[product_find_index(state, productData.id)];
+    const { image, title, price, id, rating } = productData;
+    console.log(productData);
     return (
         <Container>
             <Link to={"/store/" + id}>
@@ -31,12 +16,15 @@ const Card = ({ productData }) => {
             </Link>
             <Link to={"/store/" + id}>
                 <Info>
-                    <h3>{title}</h3>
+                    <h3>{title.length > 60 ? <>{title.slice(0 , 60)} <span style={{color: "#ff0059"}}>...</span></> : title}</h3>
                     <span>${price}</span>
+                    <Rating_card>
+                        <Rating rating={rating} />
+                    </Rating_card>
                 </Info>
             </Link>
             <Cart_buttons>
-                <CartProductControllButton_AddToBasket productData={productData}/>
+                <CartProductControllButton_AddToBasket productData={productData} />
             </Cart_buttons>
         </Container>
     );
@@ -70,10 +58,12 @@ const Info = styled.div`
     height: 10rem;
     color: #707070;
     font-size: 1rem;
-    h3 {
+    user-select: none;
+    > h3 {
         font-weight: 600;
+        user-select: auto;
     }
-    span {
+    > span {
         margin-left: 1rem;
         font-weight: bold;
         font-size: 1.3rem;
@@ -88,6 +78,11 @@ const Info = styled.div`
     &:active {
         color: #ff0059;
     }
+`;
+const Rating_card = styled.div`
+    position: absolute;
+    left: 2rem;
+    bottom: 8rem;
 `;
 const Cart_buttons = styled.div`
     position: absolute;

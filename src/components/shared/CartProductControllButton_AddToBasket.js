@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 //componetns
 import CartProductControlButton from "./CartProductControlButton";
@@ -7,7 +7,6 @@ import { Cart_context } from "../../Context/CartContextProvider";
 //helper
 import { product_find_index } from "../../helper/functions";
 export default function CartProductControllButton_AddToBasket({ productData }) {
-    const { image, title, price, id } = productData;
     const cart_data = useContext(Cart_context);
     const { state, dispatch } = cart_data;
     //👇🏻 This is the context dispatch function which is going to be called by buttons with different action types
@@ -22,7 +21,6 @@ export default function CartProductControllButton_AddToBasket({ productData }) {
     return <Cart_buttons>{!selected_products ? <button onClick={() => dispatchCallBack("ADD_PRODUCT")}>Add to basket</button> : <CartProductControlButton productData={productData} />}</Cart_buttons>;
 }
 const Cart_buttons = styled.div`
-
     > button {
         width: 14rem;
         color: #fff;

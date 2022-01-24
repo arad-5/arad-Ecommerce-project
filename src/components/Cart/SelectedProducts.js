@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+//shared components
 import CartProductControlButton from "../shared/CartProductControlButton";
+import Rating from "../shared/Rating"
 export default function SelectedProducts({ productData }) {
-    const { image, title, price } = productData;
+    const { image, title, price ,rating} = productData;
     return (
         <Product>
             <Image>
@@ -12,6 +14,7 @@ export default function SelectedProducts({ productData }) {
                 <h2>{title}</h2>
                 <span>${price}</span>
                 <CartProductControlButton productData={productData} />
+                <Rating rating={rating} />
             </Info>
         </Product>
     );
@@ -53,6 +56,7 @@ const Image = styled.div`
 const Info = styled.div`
     position: relative;
     width: 100%;
+    padding-bottom: 9rem;
     > h2 {
         font-size: 1.2rem;
     }
@@ -80,9 +84,17 @@ const Info = styled.div`
         right: 1rem;
     }
     @media (max-width: 850px) {
-        padding-bottom: 6rem;
+        padding-bottom: 10rem;
     }
     @media (max-width: 540px) {
-        padding-bottom: 7rem;
+        padding-bottom: 12rem;
+    }
+    >div:last-child {
+        position: absolute;
+        left: 0%;
+        bottom: 5rem;
+        @media (max-width: 540px) {
+            bottom: 8rem;
+        }
     }
 `;

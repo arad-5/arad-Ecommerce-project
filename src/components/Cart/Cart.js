@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 //components
 import SelectedProducts from "./SelectedProducts";
-
+import Empty from "./Empty";
 //context
 import { Cart_context } from "../../Context/CartContextProvider";
 import Facture from "./Facture";
@@ -21,13 +21,10 @@ export default function Cart() {
                             <SelectedProducts key={item.id} productData={item} />
                         ))}
                     </Products>
-                    {!!state.products_count && <Facture />}
+                    <Facture />
                 </Container>
             ) : (
-                <center>
-                    <h1>Your cart is empty</h1>
-                    <Link to="/">Back to store</Link>
-                </center>
+                <Empty />
             )}
         </>
     );
