@@ -1,18 +1,23 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 //shared components
 import CartProductControlButton from "../shared/CartProductControlButton";
 import Rating from "../shared/Rating";
 export default function SelectedProducts({ productData }) {
-    const { image, title, price, rating } = productData;
+    const { image, title, price, rating, id } = productData;
     return (
         <Product>
             <Image>
-                <img src={image} alt={title} />
+                <Link to={`/store/${id}`}>
+                    <img src={image} alt={title} />
+                </Link>
             </Image>
             <Info>
-                <h2>{title}</h2>
-                <span>${price}</span>
+                <Link to={`/store/${id}`}>
+                    <h2>{title}</h2>
+                    <span>${price}</span>
+                </Link>
                 <CartProductControlButton productData={productData} />
                 <Rating rating={rating} />
             </Info>
@@ -25,7 +30,8 @@ const Product = styled.div`
     min-height: 12rem;
     display: flex;
     justify-content: space-between;
-    > img {
+    color: #606060;
+     > img {
         display: block;
         height: 100%;
         object-fit: contain;
@@ -41,7 +47,7 @@ const Product = styled.div`
 const Image = styled.div`
     margin-right: 1rem;
     width: 10rem;
-    > img {
+    > a > img {
         display: block;
         object-fit: contain;
         height: 100%;
@@ -57,10 +63,20 @@ const Info = styled.div`
     position: relative;
     width: 100%;
     padding-bottom: 9rem;
-    > h2 {
+    > a {
+        text-decoration: none;
+        color: #606060;
+        &:hover {
+            text-decoration: underline;
+        }
+        &:active {
+            color: #ff0059;
+        }
+    }
+    > a > h2 {
         font-size: 1.2rem;
     }
-    > span {
+    > a > span {
         align-self: flex-end;
         font-weight: bold;
         font-size: 1.4rem;

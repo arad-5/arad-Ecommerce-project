@@ -44,4 +44,7 @@ const Products = styled.div`
     @media (max-width: 1071px) {
         padding-bottom: 4rem;
     }
+    >h1 {
+        color: #606060;
+    }
 `;

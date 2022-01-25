@@ -21,7 +21,6 @@ export default function ProductDetail() {
             console.log(data);
         }
     }, [data]);
-    console.log(product);
     return (
         <Container>
             {!!product ? (

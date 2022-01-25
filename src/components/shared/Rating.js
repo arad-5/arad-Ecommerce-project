@@ -60,7 +60,7 @@ const Info = styled.div`
         margin-right: 0.5rem;
     }
     > span:first-child {
-        margin-right: 2rem;
+        margin-right: 1rem;
         background-color: #f90;
         padding: 0 0.5rem;
         color: #fff;
