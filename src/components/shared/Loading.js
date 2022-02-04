@@ -3,6 +3,8 @@ import styled, { keyframes } from "styled-components";
 export default function Loading() {
     return <Container></Container>;
 }
+
+//💅🏻styling
 const breatheAnimation = keyframes`
  100% { background-color: #235fff;box-shadow: 0 0 10px 1px #235fff;}
 `;

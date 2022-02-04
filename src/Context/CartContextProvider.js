@@ -1,13 +1,16 @@
 import React, { createContext, useReducer } from "react";
+
 const initialState = {
     products_count: 0,
     total_price: 0,
     selected_items: [],
     checkout: false,
 };
+
 const reducer = (state, action) => {
     //👇🏻 This is the porduct that called dispatch in store (so every time that we click the button in card this is the data of that card in selected items)
     const current_product = state.selected_items[state.selected_items.findIndex((item) => item.id === action.productData.id)];
+
     switch (action.type) {
         case "ADD_PRODUCT":
             if (!state.selected_items.find((item) => item.id === action.productData.id)) {
@@ -67,7 +70,9 @@ const reducer = (state, action) => {
 
 //context provider
 export const Cart_context = createContext();
+
 export function CartContextProvider({ children }) {
     const [state, dispatch] = useReducer(reducer, initialState);
+
     return <Cart_context.Provider value={{ state, dispatch }}>{children}</Cart_context.Provider>;
 }

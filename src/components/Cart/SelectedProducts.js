@@ -1,11 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+
 //shared components
 import CartProductControlButton from "../shared/CartProductControlButton";
 import Rating from "../shared/Rating";
+
 export default function SelectedProducts({ productData }) {
     const { image, title, price, rating, id } = productData;
+    
     return (
         <Product>
             <Image>

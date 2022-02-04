@@ -40,7 +40,8 @@ export default function CartProductControlButton({ productData }) {
         </Buttons>
     );
 }
-//styling
+
+//💅🏻styling
 const Buttons = styled.div`
     display: flex;
     align-items: center;

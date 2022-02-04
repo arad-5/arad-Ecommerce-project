@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 //icons
 import { BsShop } from "react-icons/bs";
-import { FiBox } from "react-icons/fi";
+
 export default function Empty() {
     return (
         <Container>
@@ -20,8 +20,8 @@ export default function Empty() {
         </Container>
     );
 }
-//💅🏻styling
 
+//💅🏻styling
 const Container = styled.main`
     display: flex;
     flex-direction: column;

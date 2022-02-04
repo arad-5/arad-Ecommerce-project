@@ -1,6 +1,10 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+
+//compoentns
+import Profile from "./profile/Profile";
+
 //icon
 import { FaShoppingBasket } from "react-icons/fa";
 
@@ -10,8 +14,10 @@ import { Cart_context } from "../../Context/CartContextProvider";
 export default function Navbar() {
     const cart_data = useContext(Cart_context);
     const { state } = cart_data;
+    
     return (
         <Container>
+            <Profile/>
             <Link to="/">
                 <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" enableBackground="new 0 0 100 100" version="1.1" viewBox="0 0 100 100" xmlSpace="preserve">
                     <path
@@ -30,7 +36,7 @@ export default function Navbar() {
     );
 }
 
-//styling
+//💅🏻styling
 const Container = styled.nav`
     position: fixed;
     left: 0;

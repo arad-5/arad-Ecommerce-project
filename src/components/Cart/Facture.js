@@ -8,6 +8,7 @@ export default function Facture() {
     const cart_data = useContext(Cart_context);
     const { state } = cart_data;
     const { products_count, total_price, selected_items } = state;
+    
     return (
         <Container>
             <Quantity>
@@ -30,6 +31,7 @@ export default function Facture() {
         </Container>
     );
 }
+
 //💅🏻styling
 const Container = styled.div`
     width: 20rem;

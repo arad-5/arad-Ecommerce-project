@@ -8,6 +8,7 @@ export const products_context = createContext();
 
 export function ProductsContextProvider({ children }) {
     const [products, setproducts] = useState([]);
+    
     useEffect(() => {
         const fetchAPI = async () => {
             setproducts(await GetProductsAPI());
