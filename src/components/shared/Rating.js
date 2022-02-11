@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 //icons
 import { BsStarFill, BsPeopleFill } from "react-icons/bs";

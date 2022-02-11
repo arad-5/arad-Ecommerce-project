@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
 //context
 import { Cart_context } from "../../Context/CartContextProvider";
